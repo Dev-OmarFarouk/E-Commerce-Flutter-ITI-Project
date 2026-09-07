@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:graduation_project/Screens/profileScreen/profileScreen.dart';
+import 'feature/AllProducts/AllProducts.dart';
+import 'feature/NavBar/NavBar.dart';
 
 
 void main() {
@@ -16,9 +17,9 @@ class MyApp extends StatelessWidget {
       title: 'Retail Store',
       theme: ThemeData(
 
-        colorScheme: .fromSeed(seedColor: Colors.white),
+        colorScheme: .fromSeed(seedColor: Colors.grey.shade100),
       ),
-      home: ProfileScreen(),
+      home: AllProducts(),
     );
   }
 }
