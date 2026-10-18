@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "706824801273",
+    "project_id": "e-commerce-iti-b7204",
+    "storage_bucket": "e-commerce-iti-b7204.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:706824801273:android:9d666b426c07010b8b8b28",
+        "android_client_info": {
+          "package_name": "com.example.graduation_project"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB78f6oLCJiwV33sqjrGm0GoBuIPPiGnJ0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

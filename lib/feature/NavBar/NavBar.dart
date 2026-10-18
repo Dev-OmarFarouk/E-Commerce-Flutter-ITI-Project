@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import '../Cart/Cart.dart';
 import '../Home/Home.dart';
 import '../Profile/Profile.dart';
-import '../Search/Search.dart';
+import '../Search/product_search_delegate.dart';
 
 
 class Navbar extends StatefulWidget {
@@ -13,12 +13,27 @@ class Navbar extends StatefulWidget {
 }
 
 class _NavbarState extends State<Navbar> {
+  // مكانك في النافبار: 0 = Home, 2 = Cart, 3 = Profile
+  // رقم 1 بتاع السيرش مش سكرينة، بيفتح الـ delegate على طول
   int currentIndex = 0;
-  List<Widget> screens = [Home(), Search(), Cart(), Profile()]; //هنا اسماء الاسكرينات
+
+  Future<void> _openSearch() async {
+    await showSearch<String?>(
+      context: context,
+      delegate: ProductSearchDelegate(),
+    );
+  }
+
+  Widget get currentScreen {
+    if (currentIndex == 2) return Cart();
+    if (currentIndex == 3) return Profile();
+    return Home(onSearchTap: _openSearch);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: screens[currentIndex],
+      body: currentScreen,
       bottomNavigationBar: BottomNavigationBar(
         items: [
           BottomNavigationBarItem(
@@ -36,6 +51,10 @@ class _NavbarState extends State<Navbar> {
         ],
         currentIndex: currentIndex,
         onTap: (value) {
+          if (value == 1) {
+            _openSearch();
+            return;
+          }
           setState(() {
             currentIndex = value;
           });

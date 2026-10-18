@@ -1,23 +1,28 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:graduation_project/core/network/services/auth_services.dart';
 
 class Profile extends StatelessWidget {
   const Profile({super.key});
-
+  
   @override
   Widget build(BuildContext context) {
+
+    final email = FirebaseAuth.instance.currentUser?.email ?? '';
+    final name = email.contains('@') ? email.split('@')[0] : email;
+    final initial = name.isNotEmpty ? name[0].toUpperCase() : '?';
+
     return Scaffold(
       body: SafeArea(
         child: Column(
           children: [
             const SizedBox(height: 40),
 
-            // Profile picture
-            const CircleAvatar(
+            CircleAvatar(
               radius: 52,
               backgroundColor: Color(0xff6055D8),
               child: Text(
-                "i",
+                initial,
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: 52,
@@ -28,9 +33,8 @@ class Profile extends StatelessWidget {
 
             const SizedBox(height: 12),
 
-            // Username
-            const Text(
-              "name",
+            Text(
+              name,
               style: TextStyle(
                 color: Colors.black,
                 fontSize: 33,
@@ -40,7 +44,6 @@ class Profile extends StatelessWidget {
 
             const SizedBox(height: 20),
 
-            //List items
             Expanded(
               child: ListView(
                 padding: const EdgeInsets.symmetric(horizontal: 16.0),

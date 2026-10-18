@@ -3,10 +3,12 @@ import 'package:flutter/material.dart';
 class PasswordTextField extends StatefulWidget {
   final TextEditingController? controller;
   final ValueChanged<String>? onChanged;
+  final String hintText;
   final FormFieldValidator<String>? validator;
 
   const PasswordTextField({
     super.key,
+    required this.hintText,
     this.controller,
     this.onChanged,
     this.validator,
@@ -18,7 +20,6 @@ class PasswordTextField extends StatefulWidget {
 
 class _PasswordTextFieldState extends State<PasswordTextField> {
   bool _isObscured = true;
-
   @override
   Widget build(BuildContext context) {
     return TextFormField(
@@ -27,17 +28,15 @@ class _PasswordTextFieldState extends State<PasswordTextField> {
       onChanged: widget.onChanged,
       validator: widget.validator,
       decoration: InputDecoration(
-        hintText: "••••••••",
-        hintStyle: const TextStyle(
-          color: Color(0xff6B7280),
+        hintText: widget.hintText,
+        hintStyle: TextStyle(
+          color: Colors.black.withOpacity(0.5),
         ),
-        prefixIcon: const Icon(Icons.lock_outline),
         suffixIcon: IconButton(
           icon: Icon(
             _isObscured
-                ? Icons.remove_red_eye_outlined
-                : Icons.visibility_off_outlined,
-            color: const Color(0xff000000),
+                ? Icons.remove_red_eye
+                : Icons.visibility_off,
           ),
           onPressed: () {
             setState(() {
@@ -46,27 +45,27 @@ class _PasswordTextFieldState extends State<PasswordTextField> {
           },
         ),
         enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(5),
+          borderRadius: BorderRadius.circular(15),
           borderSide: const BorderSide(
             color: Color(0xff6B7280),
           ),
         ),
         focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(10),
+          borderRadius: BorderRadius.circular(15),
           borderSide: const BorderSide(
-            color: Color(0xff8D4B00),
+            color: Color(0xff6055D8),
           ),
         ),
         errorBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(5),
+          borderRadius: BorderRadius.circular(15),
           borderSide: const BorderSide(
             color: Color(0xff6B7280),
           ),
         ),
         focusedErrorBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(10),
+          borderRadius: BorderRadius.circular(15),
           borderSide: const BorderSide(
-            color: Color(0xff8D4B00),
+            color: Color(0xff6055D8),
           ),
         ),
         errorStyle: const TextStyle(
